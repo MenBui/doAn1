@@ -5,23 +5,88 @@
  */
 package quanlithuvien;
 
+
 import javax.swing.table.DefaultTableModel;
-import java.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author menbt
  */
 public class quanLiDocGia extends javax.swing.JFrame {
 
+    Statement st;
+    SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+
+    public ArrayList<DocGia> layDSDocGia() {
+
+        ArrayList<DocGia> lstDocGia = new ArrayList<DocGia>();
+        Connection con = ConnectionDB.getConnectDB();
+        try {
+            st = con.createStatement();
+            String sql = "SELECT * FROM Bangdocgia";
+            ResultSet rs = st.executeQuery(sql);
+            DocGia DG;
+            while (rs.next()) {
+                DG = new DocGia(rs.getString(1), rs.getString(2), date.format(rs.getDate(3)), rs.getInt(4) == 1 ? "Nam" : "Nữ",
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                lstDocGia.add(DG);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(quanLiDocGia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lstDocGia;
+    }
+
+    public void hienThiDSDocGia(JTable table) {
+
+        String cotTieuDe[] = new String[]{"Mã độc giả", "Họ và tên", "Ngày sinh", "Giới tính", "Số CMND", "Số diện thoại", "Email", "Quê quán"};
+
+        ArrayList<DocGia> lstDocGia = layDSDocGia();
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.setColumnIdentifiers(cotTieuDe);
+
+        Object[] row;
+
+        for (int i = 0; i < lstDocGia.size(); i++) {
+            row = new Object[8];
+            row[0] = lstDocGia.get(i).getMaDG();
+            row[1] = lstDocGia.get(i).getTenDG();
+            row[2] = lstDocGia.get(i).getNgaySinh();
+            row[3] = lstDocGia.get(i).getGioiTinh();
+            row[4] = lstDocGia.get(i).getSoCMND();
+            row[5] = lstDocGia.get(i).getSoDT();
+            row[6] = lstDocGia.get(i).getEmail();
+            row[7] = lstDocGia.get(i).getQueQuan();
+
+            model.addRow(row);
+        }
+
+        table.setModel(model);
+    }
+
     /**
      * Creates new form quanLiDocGia
      */
     public quanLiDocGia() {
         initComponents();
+        hienThiDSDocGia(Table_DG);
     }
-    
-       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,8 +101,8 @@ public class quanLiDocGia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Table_DG = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -54,9 +119,9 @@ public class quanLiDocGia extends javax.swing.JFrame {
         o_quequan = new javax.swing.JTextField();
         o_sodienthoai = new javax.swing.JTextField();
         o_email = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_Them = new javax.swing.JButton();
+        btn_Sua = new javax.swing.JButton();
+        btn_Xoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý độc giả");
@@ -72,41 +137,34 @@ public class quanLiDocGia extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table_DG.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Table_DG.setForeground(new java.awt.Color(255, 0, 102));
+        Table_DG.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Mã độc giả", "Họ và tên", "Ngày sinh", "Giới tính", "Số CMND", "Số điện thoại", "Email", "Quê quán"
+
             }
         ));
-        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jTable1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+        Table_DG.setRowHeight(25);
+        Table_DG.setSelectionBackground(new java.awt.Color(255, 204, 255));
+        Table_DG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table_DGMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(Table_DG);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane2)
         );
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -146,20 +204,35 @@ public class quanLiDocGia extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jButton1.setText("Thêm");
-
-        jButton2.setBackground(new java.awt.Color(153, 255, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jButton2.setText("Sửa");
-
-        jButton3.setBackground(new java.awt.Color(153, 255, 255));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jButton3.setText("Xóa");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_Them.setBackground(new java.awt.Color(153, 255, 255));
+        btn_Them.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_Them.setText("Thêm");
+        btn_Them.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ThemMouseClicked(evt);
+            }
+        });
+        btn_Them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_ThemActionPerformed(evt);
+            }
+        });
+
+        btn_Sua.setBackground(new java.awt.Color(153, 255, 255));
+        btn_Sua.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_Sua.setText("Sửa");
+
+        btn_Xoa.setBackground(new java.awt.Color(153, 255, 255));
+        btn_Xoa.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btn_Xoa.setText("Xóa");
+        btn_Xoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_XoaMouseClicked(evt);
+            }
+        });
+        btn_Xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_XoaActionPerformed(evt);
             }
         });
 
@@ -204,11 +277,11 @@ public class quanLiDocGia extends javax.swing.JFrame {
                                     .addComponent(o_gioitinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(jButton1)
-                                .addGap(67, 67, 67)
-                                .addComponent(jButton2)
+                                .addComponent(btn_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(btn_Sua, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)))
+                                .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(24, 24, 24))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -259,11 +332,11 @@ public class quanLiDocGia extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(o_quequan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_Them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
@@ -294,21 +367,79 @@ public class quanLiDocGia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_o_ngaysinhActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    o_madocgia.setText("");
-    o_hovaten.setText("");
-    o_ngaysinh.setText("");
-    o_gioitinh.setText("");
-    o_soCMND.setText("");
-    o_sodienthoai.setText("");
-    o_email.setText("");
-    o_quequan.setText("");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btn_XoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_XoaMouseClicked
+        Connection con = ConnectionDB.getConnectDB();
+        try {
+            
+            String sql = "DELETE FROM Bangchitietmuontra\n"
+                    + " WHERE [Mã mượn trả ] IN\n"
+                    + "(SELECT [Mã mượn trả ] FROM Bangmuontra \n"
+                    + "WHERE [Mã độc giả]= ? )\n"
+                    + "DELETE FROM Bangmuontra\n"
+                    + "WHERE [Mã độc giả]= ?\n"
+                    + "DELETE FROM Bangdocgia\n"
+                    + "WHERE [Mã độc giả]= ?";
+            PreparedStatement st= (PreparedStatement) con.prepareStatement(sql);
+            st.setString(1, o_madocgia.getText());
+            st.setString(2, o_madocgia.getText());
+            st.setString(3, o_madocgia.getText());
+            st.execute();
+            hienThiDSDocGia(Table_DG);
+            JOptionPane.showMessageDialog(null, "Xóa thành công!");
 
-    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        } catch (SQLException ex) {
+            Logger.getLogger(quanLiDocGia.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Có lỗi. Chưa xóa thành công!");
+        }
+    }//GEN-LAST:event_btn_XoaMouseClicked
+
+    private void btn_ThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThemMouseClicked
+         Connection con = ConnectionDB.getConnectDB();
+         try {
+            String sql="INSERT INTO Bangdocgia ([Mã độc giả],"
+                    + "[Họ và tên],[Ngày sinh],[Giới tính],[Số CMND],[Số điện thoại],"
+                    + "[Email],[Quê quán])VALUES ('?','?','?','?','?','?','?','?')";
+            PreparedStatement st= (PreparedStatement) con.prepareStatement(sql);
+            st.setString(1, o_madocgia.getText());
+            st.setString(2, o_hovaten.getText());
+            st.setString(3, o_ngaysinh.getText());
+            st.setString(4, o_gioitinh.getText());
+            st.setString(5, o_soCMND.getText());
+            st.setString(6, o_sodienthoai.getText());
+            st.setString(7, o_email.getText());
+            st.setString(8, o_quequan.getText());
+            st.execute();
+            hienThiDSDocGia(Table_DG);
+            JOptionPane.showMessageDialog(null, "Thêm thành công!");
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Có lỗi. Chưa Thêm thành công!"); 
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btn_ThemMouseClicked
+
+    private void Table_DGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_DGMouseClicked
+        int i = Table_DG.getSelectedRow();
+        TableModel model = Table_DG.getModel();
+        o_madocgia.setText(model.getValueAt(i, 0).toString());
+        o_hovaten.setText(model.getValueAt(i, 1).toString());
+        o_ngaysinh.setText(model.getValueAt(i, 2).toString());
+        o_gioitinh.setText(model.getValueAt(i, 3).toString());
+        o_soCMND.setText(model.getValueAt(i, 4).toString());
+        o_sodienthoai.setText(model.getValueAt(i, 5).toString());
+        o_email.setText(model.getValueAt(i, 6).toString());
+        o_quequan.setText(model.getValueAt(i, 7).toString());
+    }//GEN-LAST:event_Table_DGMouseClicked
+
+    private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1AncestorAdded
+    }//GEN-LAST:event_btn_XoaActionPerformed
+
+    private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ThemActionPerformed
+    public void showResult() {
+    }
 
     /**
      * @param args the command line arguments
@@ -346,9 +477,10 @@ public class quanLiDocGia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTable Table_DG;
+    private javax.swing.JButton btn_Sua;
+    private javax.swing.JButton btn_Them;
+    private javax.swing.JButton btn_Xoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -361,8 +493,7 @@ public class quanLiDocGia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField o_email;
     private javax.swing.JTextField o_gioitinh;
     private javax.swing.JTextField o_hovaten;
@@ -372,4 +503,8 @@ public class quanLiDocGia extends javax.swing.JFrame {
     private javax.swing.JTextField o_soCMND;
     private javax.swing.JTextField o_sodienthoai;
     // End of variables declaration//GEN-END:variables
+
+    private void Result(DocGia DG) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
