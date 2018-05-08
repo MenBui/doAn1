@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="31bf6522-3f26-4cc2-b0ca-dfbb24032a7c">
+	<property name="ireport.zoom" value="0.8250000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="a393e4ed-40e4-4402-820a-6244f1e984d0">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     *
+FROM
+     "dbo"."Bangdocgia" Bangdocgia]]>
+		</queryString>
+		<field name="Mã độc giả" class="java.lang.String"/>
+		<field name="Họ và tên" class="java.lang.String"/>
+		<field name="Ngày sinh" class="java.lang.String"/>
+		<field name="Giới tính" class="java.lang.Integer"/>
+		<field name="Số CMND" class="java.lang.String"/>
+		<field name="Số điện thoại" class="java.lang.String"/>
+		<field name="Email" class="java.lang.String"/>
+		<field name="Quê quán" class="java.lang.String"/>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     Bangdocgia."Mã độc giả" ,
+     Bangdocgia."Họ và tên" ,
+     Bangdocgia."Ngày sinh",
+     Bangdocgia."Giới tính" ,
+     Bangdocgia."Số CMND" ,
+     Bangdocgia."Số điện thoại" ,
+     Bangdocgia."Email" ,
+     Bangdocgia."Quê quán" 
+FROM
+     "dbo"."Bangdocgia" Bangdocgia]]>
+	</queryString>
+	<field name="Mã độc giả" class="java.lang.String"/>
+	<field name="Họ và tên" class="java.lang.String"/>
+	<field name="Ngày sinh" class="java.lang.String"/>
+	<field name="Giới tính" class="java.lang.Integer"/>
+	<field name="Số CMND" class="java.lang.String"/>
+	<field name="Số điện thoại" class="java.lang.String"/>
+	<field name="Email" class="java.lang.String"/>
+	<field name="Quê quán" class="java.lang.String"/>
+	<title>
+		<band height="151" splitType="Stretch">
+			<textField pattern="dd/MM/yy">
+				<reportElement x="672" y="97" width="125" height="20" forecolor="#000000" uuid="28d88d55-4d03-4870-a809-6889c66c17ba"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="226" y="107" width="331" height="39" forecolor="#000000" uuid="e692813d-a995-424b-892a-d403dbeecf52"/>
+				<textElement textAlignment="Center">
+					<font size="30" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DANH SÁCH ĐỘC GIẢ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="1" width="297" height="21" uuid="60338ed7-fbb2-4a14-a152-e1f65b6b1e6a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="570" y="35" width="180" height="20" uuid="670a0c3c-2423-4ec4-a314-5f54208da80c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Độc lập- Tự do- Hạnh phúc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="55" width="105" height="32" uuid="c14ed478-b14e-4fd5-8d52-0d6dc69b985c"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[-----------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="2" width="287" height="20" uuid="8aa72d4e-4705-43dc-b8c5-7eb4fcbbb997"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="35" width="163" height="20" uuid="63f31275-2287-4a7a-9d97-1bae2951f10c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thư vện Tạ Quang Bửu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="55" width="159" height="20" uuid="3846eef6-255a-4554-8730-e94251879d77"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Họ tên sv: Bùi Thị Mến]]></text>
+			</staticText>
+			<image>
+				<reportElement x="27" y="35" width="81" height="111" uuid="a669ecec-85a9-4101-82ee-1f4d55fafbf9"/>
+				<imageExpression><![CDATA["C:\\Users\\menbt\\Desktop\\BK.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="570" y="97" width="100" height="20" uuid="1a0d4f8d-336c-4e20-b0bc-0f38e3825f16"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Hà Nội,]]></text>
+			</staticText>
+		</band>
+	</title>
+	<lastPageFooter>
+		<band height="78">
+			<staticText>
+				<reportElement x="81" y="21" width="145" height="20" uuid="d8ae8270-7c7f-452d-9550-8684c26d0f79"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="21" width="145" height="20" uuid="86273e8a-e966-450b-b8d2-3dab5c85cc5a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xác nhận của thủ thư]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="41" width="145" height="20" uuid="67568aac-1512-4a32-8fcf-3a686b761853"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="41" width="145" height="20" uuid="91c4994a-63b4-4f22-a47d-7821d9295dc5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="74">
+			<componentElement>
+				<reportElement key="table" style="table" x="27" y="0" width="759" height="63" uuid="56909b1e-727d-4378-af3f-6ef5a683ec86"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="d9a993ba-abd2-4b87-85ba-bfb3bad40062">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="13270b91-01f9-44b6-9bd9-81e5353cf43b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1e454028-19cc-4b86-a723-8bf8f8bdeada"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Mã độc giả]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="90" height="32" uuid="521860a7-d241-4db1-bf4f-b60323ae9655"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Mã độc giả}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="124" uuid="f7ee5dde-35c3-4ba9-bf15-aa1274b70aac">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="124" height="30" uuid="4671efb5-fae5-41c4-bb35-4e0a4c12eefa"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Họ và tên]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="124" height="32" uuid="906660e8-d2b7-4b37-90a6-f6aa2357af6d"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Họ và tên}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="15fe6239-8820-4a98-bce7-e65b44b980ea">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d60d6489-9202-4525-b857-c07ec44bd680"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Ngày sinh]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="90" height="32" uuid="c5d8dafe-3287-46a6-8c93-855bde977983"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Ngày sinh}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="69" uuid="3314bf91-58e0-4041-a1d7-21167400b3ee">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="68" height="30" uuid="23e83d89-6ff4-4fa7-8776-8afda6c5e0a2"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Giới tính]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="68" height="32" uuid="ca442ef4-0403-43db-9260-2eba01bce15c"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Giới tính}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="05064993-806c-43d5-989d-0f6a0bf26f82">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="9e639b23-3ca9-4c83-b103-8835ecdd0be5"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Số CMND]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="90" height="32" uuid="9e6f8f07-86f6-487c-bf0f-c68d9d015b50"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Số CMND}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="fa247273-2afa-4810-8668-d1302dac5565">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="27310daf-e257-44de-9066-973adfcba404"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Số điện thoại]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="90" height="32" uuid="cd39766f-3c3b-42d3-b321-953ec40d24e2"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Số điện thoại}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="117" uuid="f80344a0-94bd-4e9f-a866-2e814694393e">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="117" height="30" uuid="c179bf60-6a73-4918-b3ef-c8394c55f047"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Email]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="117" height="32" uuid="26302e22-a85a-460e-a2d4-d3be842745ef"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Email}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f93d657a-20b6-40fd-b1d2-ec4a45178643">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c8dc1d96-77d1-4826-9d57-1266cdb8701f"/>
+								<textElement textAlignment="Center">
+									<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Quê quán]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="32" rowSpan="1">
+							<textField>
+								<reportElement style="Detail" x="0" y="0" width="90" height="32" uuid="11a254dd-4983-4685-b8df-f6d0736141ca"/>
+								<textElement textAlignment="Center">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Quê quán}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

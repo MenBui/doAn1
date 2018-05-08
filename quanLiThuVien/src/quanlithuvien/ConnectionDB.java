@@ -9,7 +9,7 @@ public class ConnectionDB {
         try {
             String uRL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=QLTV";
             String user = "sa";
-            String pass = "01126461";
+            String pass = "12011998";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             cnn = DriverManager.getConnection(uRL, user, pass);
             System.out.println("Kết nối thành công");

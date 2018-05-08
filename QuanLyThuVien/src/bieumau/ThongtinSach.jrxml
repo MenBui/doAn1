@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bf4046a-0f05-4784-b4f5-d966ea1012c1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="c6f2eb34-971f-4c46-9928-5ece189b3749">
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM dbo.SACH]]>
+		</queryString>
+		<field name="MASACH" class="java.lang.String"/>
+		<field name="TENSACH" class="java.lang.String"/>
+		<field name="THELOAI" class="java.lang.String"/>
+		<field name="TACGIA" class="java.lang.String"/>
+		<field name="NHA_XB" class="java.lang.String"/>
+		<field name="SOLUONG" class="java.lang.Integer"/>
+	</subDataset>
+	<subDataset name="New Dataset 2" uuid="08ec47eb-8f3c-46cc-8a3f-f30e4b3eab01">
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM dbo.SACH]]>
+		</queryString>
+		<field name="MASACH" class="java.lang.String"/>
+		<field name="TENSACH" class="java.lang.String"/>
+		<field name="THELOAI" class="java.lang.String"/>
+		<field name="TACGIA" class="java.lang.String"/>
+		<field name="NHA_XB" class="java.lang.String"/>
+		<field name="SOLUONG" class="java.lang.Integer"/>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM dbo.SACH]]>
+	</queryString>
+	<field name="MASACH" class="java.lang.String"/>
+	<field name="TENSACH" class="java.lang.String"/>
+	<field name="THELOAI" class="java.lang.String"/>
+	<field name="TACGIA" class="java.lang.String"/>
+	<field name="NHA_XB" class="java.lang.String"/>
+	<field name="SOLUONG" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="235" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="178" height="20" uuid="40300d5a-f7c8-4c54-8f38-41944d5f698b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ĐẠI HỌC BÁCH KHOA HÀ NỘI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="33" width="129" height="20" uuid="65010c19-b482-462d-b6db-3d6fa281b779"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thư viện Tạ Quang Bửu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="13" width="252" height="20" uuid="c066d9ea-4387-49a9-9b3b-ec9b717867e7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="33" width="149" height="20" uuid="198208d5-16e0-4a3c-ab7e-f7e4420dffef"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Độc lập - Tự do - Hạnh phúc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="53" width="129" height="20" uuid="c497c4b2-8600-4417-8beb-abb3154160c2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[  Họ tên SV : Lê Anh Tuấn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="53" width="149" height="20" uuid="10270973-7a9c-4fcf-8ea7-6098fec050d3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[-------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="97" width="42" height="20" uuid="9667283a-d45b-4be6-9041-b6231ef9b2a8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Hà Nội, ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="444" y="97" width="100" height="20" uuid="72b2e82b-857d-4baf-a27b-5cf15559ec67"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="178" y="131" width="247" height="27" uuid="3dcc1ab9-31bd-4447-bccd-c781e97b66c6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="20" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Thông tin sách trong thư viện]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="0" y="185" width="360" height="50" uuid="bc5585a5-90f3-4378-a727-9969fa589156"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2" uuid="86e3ad0d-4284-46dc-8f5c-9f57c5d96f60">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="4767fa57-9c22-467c-888d-9d2a7059ba18">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e1cc00e7-298b-4e71-b0eb-14b7972eed4a"/>
+								<text><![CDATA[MASACH]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="14dc9f48-6b76-40ae-99ea-635b4a416ae6"/>
+								<textFieldExpression><![CDATA[$F{MASACH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="15720f6d-7129-4d44-85dc-7ff6051fa980">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a841a202-b882-4bf2-bfe8-314a5168c342"/>
+								<text><![CDATA[TENSACH]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d395b913-919a-4031-8369-25dafba620f2"/>
+								<textFieldExpression><![CDATA[$F{TENSACH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="391e94cc-15d6-4ddb-b905-6abe96c2a001">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="483e62af-c9dc-430b-9a66-7b335b103d08"/>
+								<text><![CDATA[THELOAI]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="60e70776-85bd-47f6-846b-421344733f58"/>
+								<textFieldExpression><![CDATA[$F{THELOAI}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0e6f2788-c847-4fc1-94ee-d6648e30aeea">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a5759c9f-a0f0-44fa-91ce-4c4ea3e0da4b"/>
+								<text><![CDATA[TACGIA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="05b791ba-3bee-4c18-b381-f09002c8ee3f"/>
+								<textFieldExpression><![CDATA[$F{TACGIA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="30184c71-de98-4447-b1ab-e8c810896617">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="72c937ba-11b7-470e-a2d1-fa7109fba7fd"/>
+								<text><![CDATA[NHA_XB]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d11d4e91-4223-4395-b6b5-487e89bba101"/>
+								<textFieldExpression><![CDATA[$F{NHA_XB}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="275c42b8-86c7-481c-a6ee-4e9689e17858">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="bc7ff27a-ad9f-4768-b44a-52ff2f69a720"/>
+								<text><![CDATA[SOLUONG]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3b6ec6cb-4b15-4724-b8d4-cb1292031347"/>
+								<textFieldExpression><![CDATA[$F{SOLUONG}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="42" y="7" width="59" height="20" uuid="f469c306-6080-4da0-880f-c550a1c2751a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="27" width="104" height="20" uuid="427cdc87-98ef-4638-952e-70bf6b8a299c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="7" width="117" height="20" uuid="91f96d17-ef18-4d63-94a6-9eb34f62a6ee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xác nhận của thủ thư]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="27" width="105" height="20" uuid="00ba0966-896a-4cb2-82a0-99ce25c44eba"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>
