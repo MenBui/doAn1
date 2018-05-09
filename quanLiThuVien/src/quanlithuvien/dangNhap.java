@@ -37,7 +37,6 @@ public class dangNhap extends javax.swing.JFrame {
         o_matkhau1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -55,17 +54,17 @@ public class dangNhap extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 102));
         jLabel1.setText("Đăng Nhập");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         o_nhap.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         o_nhap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         o_nhap.setText("UserName:");
-        jPanel1.add(o_nhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, 50));
+        jPanel1.add(o_nhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, 50));
 
         o_matkhau.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         o_matkhau.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         o_matkhau.setText("PassWord:");
-        jPanel1.add(o_matkhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 90, 50));
+        jPanel1.add(o_matkhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 90, 50));
 
         o_nhap1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         o_nhap1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -76,12 +75,12 @@ public class dangNhap extends javax.swing.JFrame {
                 o_nhap1ActionPerformed(evt);
             }
         });
-        jPanel1.add(o_nhap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 231, 250, 30));
+        jPanel1.add(o_nhap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 250, 30));
 
         o_matkhau1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         o_matkhau1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         o_matkhau1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(o_matkhau1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 294, 250, 30));
+        jPanel1.add(o_matkhau1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 250, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -92,7 +91,7 @@ public class dangNhap extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -103,20 +102,14 @@ public class dangNhap extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 110, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\menbt\\Desktop\\BK.jpg")); // NOI18N
-        jLabel2.setText("jLabel2");
-        jLabel2.setAlignmentX(100.0F);
-        jLabel2.setAlignmentY(100.0F);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 136, 172));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 110, -1));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel3.setText("Trường Đại học Bách Khoa Hà Nội");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\menbt\\Downloads\\ramdisk_crop_178900319_suLKmSi.jpg")); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,7 +187,6 @@ public class dangNhap extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

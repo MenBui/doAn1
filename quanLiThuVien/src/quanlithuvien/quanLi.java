@@ -101,6 +101,11 @@ public class quanLi extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_Accounting_96px.png"))); // NOI18N
         jButton4.setPreferredSize(new java.awt.Dimension(120, 120));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
@@ -231,6 +236,12 @@ public class quanLi extends javax.swing.JFrame {
         timKiem TK = new timKiem();
         TK.main(null);// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+      setVisible(false);
+      TK tk= new TK();
+        tk.main(null) ; // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

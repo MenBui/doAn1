@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c1470cbc-451a-4f0f-bc16-a8fc9ce73946">
+	<property name="ireport.zoom" value="1.0000000000000007"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from Bangsach
+ where [Mã sách] LIKE  $P{ID}
+      or [Tên sách] like $P{ID}
+      or [Tác giả] like $P{ID}
+      or [Thể loại] like $P{ID}
+      or [Nhà xuất bản] like $P{ID}
+      or [Năm xuất bản] like $P{ID}
+      or [Đơn giá] like  $P{ID}
+      or [Số lượng] like $P{ID}]]>
+	</queryString>
+	<field name="Mã sách" class="java.lang.String"/>
+	<field name="Tên sách" class="java.lang.String"/>
+	<field name="Tác giả" class="java.lang.String"/>
+	<field name="Thể loại" class="java.lang.String"/>
+	<field name="Nhà xuất bản" class="java.lang.String"/>
+	<field name="Năm xuất bản" class="java.lang.Integer"/>
+	<field name="Đơn giá" class="java.lang.Integer"/>
+	<field name="Số lượng" class="java.lang.Integer"/>
+	<title>
+		<band height="189" splitType="Stretch">
+			<staticText>
+				<reportElement x="611" y="82" width="45" height="20" uuid="b8d07d6e-ab3a-4d29-ac4f-effad80b0548"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Hà Nội,]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="656" y="82" width="118" height="20" forecolor="#000000" uuid="fd5f495d-c738-4d9a-9596-3661dfd0d356"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="601" y="52" width="103" height="30" uuid="8e47380f-004b-4d54-8132-68e146c27e9a"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[-----------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="561" y="30" width="178" height="20" uuid="55f39886-cc26-4cec-a00e-73ecc527f3a8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Độc lập- Tự do- Hạnh phúc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="297" height="21" uuid="3d25a788-aa60-4d3f-ba8f-87d03892edc9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="29" width="181" height="20" uuid="50019c1b-ff43-4f4f-992d-5c805c107900"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thư vện Tạ Quang Bửu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="290" height="20" uuid="bb33abc8-3680-4507-949f-a71c12373aab"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="49" width="177" height="20" uuid="3c4d5894-a424-4588-bca1-97d690757c5b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Họ tên sv: Bùi Thị Mến]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="102" width="526" height="55" uuid="e8881b3a-2577-4d0b-910b-41ec6d03bf77"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="36" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tìm Kiếm]]></text>
+			</staticText>
+			<image>
+				<reportElement x="11" y="30" width="78" height="109" uuid="3554b123-0cd7-40a6-b4f7-6e7d84d488e9"/>
+				<imageExpression><![CDATA["C:\\Users\\menbt\\Desktop\\BK.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="154" y="157" width="187" height="25" uuid="e5f7d806-6199-415d-a224-49cc57a9697d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nội dung tìm kiếm sách:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="341" y="157" width="289" height="25" uuid="b0f3bed7-f092-4f3b-8ec0-666337a69b6a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="100" height="28" forecolor="#736343" uuid="d10b6bc0-d378-4e1b-b8b3-04007789fb7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Mã sách]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="100" y="0" width="100" height="28" forecolor="#736343" uuid="3d2d356f-9d9f-40b3-9a1b-c37ee98567e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tên sách]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="0" width="100" height="28" forecolor="#736343" uuid="2a6a968c-cf13-4e51-965b-abd1a4fe2b5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tác giả]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="300" y="0" width="100" height="28" forecolor="#736343" uuid="a8c75db1-af59-41b8-a9ff-1146d1b6ac0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Thể loại]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="0" width="100" height="28" forecolor="#736343" uuid="1f35898f-a7e5-4cd9-b4fd-ffe0204e5a78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nhà xuất bản]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="500" y="0" width="100" height="28" forecolor="#736343" uuid="fcbc7916-0bab-4099-99c5-ddcf05217726"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Năm xuất bản]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="600" y="0" width="100" height="28" forecolor="#736343" uuid="7e74def7-43c8-4aad-8e68-cf5cd8aa0ff2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Đơn giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="700" y="0" width="100" height="28" forecolor="#736343" uuid="4a2f02f2-b5b2-47a0-8399-c89faa86baf7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="22" uuid="0ce2e6c8-71e9-481b-b75f-557ab821bf71"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="100" height="22" uuid="872e3b1b-1489-426e-b297-dcc5ac87845b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Mã sách}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="100" y="0" width="100" height="22" uuid="b7b8d1b0-936c-4b2f-86a5-bfc4f5aca5b9"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Tên sách}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="200" y="0" width="100" height="22" uuid="5ca9c8d6-6426-4e35-b27a-bfd5db7bb884"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Tác giả}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="300" y="0" width="100" height="22" uuid="4940071c-5b1b-467e-b8f2-ee44b1a8f865"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Thể loại}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="400" y="0" width="100" height="22" uuid="2656f6c4-c4ae-4c9d-8cdc-7335fc0d9a15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Nhà xuất bản}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="500" y="0" width="100" height="22" uuid="72b0444b-3200-4ff6-956b-ef2fae0e2751"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Năm xuất bản}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="600" y="0" width="100" height="22" uuid="58d17755-e797-4c95-b2fa-9ea4d8672427"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Đơn giá}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="700" y="0" width="100" height="22" uuid="ee46f9c2-330c-45d6-8b04-91648f6c9f39"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Số lượng}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<summary>
+		<band height="92">
+			<staticText>
+				<reportElement x="577" y="17" width="145" height="20" uuid="e025a1e0-e8e7-4a79-9c8e-9f6aa4917ea8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xác nhận của thủ thư]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="17" width="145" height="20" uuid="5fde64d8-04f2-4c25-bb5a-bb455eb6afc5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="577" y="37" width="145" height="20" uuid="09f68984-8f26-4e52-b3ee-faef30bca64d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="37" width="145" height="20" uuid="606db1fa-86b9-4cf9-b1a3-8b3cdf491592"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

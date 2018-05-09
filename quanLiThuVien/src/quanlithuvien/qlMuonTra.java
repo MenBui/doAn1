@@ -5,24 +5,31 @@
  */
 package quanlithuvien;
 
+import Home.myViewerReport;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import static quanlithuvien.ExcelHelperNV.readNV;
 
 /**
  *
  * @author menbt
  */
 public class qlMuonTra extends javax.swing.JFrame {
+
+    DefaultTableModel tbn = new DefaultTableModel();
 
     public void LayDSMuonTra() {
         DefaultTableModel tbn = new DefaultTableModel();
@@ -132,6 +139,7 @@ public class qlMuonTra extends javax.swing.JFrame {
      */
     public qlMuonTra() {
         initComponents();
+        loadData();
         LayDSMuonTra();
         Connection con = ConnectionDB.getConnectDB();
         try {
@@ -149,6 +157,56 @@ public class qlMuonTra extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(qlMuonTra.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    public void loadData() {
+
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            int number;
+            Vector row, column;
+            column = new Vector();
+            Statement st = cnn.createStatement();
+            ResultSet rs = st.executeQuery("select * from Bangmuontra");
+            ResultSetMetaData metaData = rs.getMetaData();
+            number = metaData.getColumnCount();
+
+            for (int i = 1; i <= number; i++) {
+                column.add(metaData.getColumnName(i));
+
+            }
+            tbn.setColumnIdentifiers(column);
+
+            while (rs.next()) {
+                row = new Vector();
+                for (int i = 1; i <= number; i++) {
+                    row.addElement(rs.getString(i));
+
+                }
+                tbn.addRow(row);
+                table1.setModel(tbn);
+            }
+            table1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent lse) {
+                    if (table1.getSelectedRow() >= 0) {
+                        o_mamuontra.setText(table1.getValueAt(table1.getSelectedRow(), 0) + "");
+                        cb_DocGia.setSelectedItem(table1.getValueAt(table1.getSelectedRow(), 1) + "");
+                        o_ngaymuon.setText(table1.getValueAt(table1.getSelectedRow(), 2) + "");
+                        o_ngayhentra.setText(table1.getValueAt(table1.getSelectedRow(), 3) + "");
+                        o_tiencoc.setText(table1.getValueAt(table1.getSelectedRow(), 4) + "");
+                        cb_NhanVien.setSelectedItem(table1.getValueAt(table1.getSelectedRow(), 5) + "");
+                        o_tennhanvien1.setText(table1.getValueAt(table1.getSelectedRow(), 6) + "");
+
+                    }
+                }
+            });
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
     }
 
     /**
@@ -163,7 +221,6 @@ public class qlMuonTra extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        o_xoa1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -171,7 +228,6 @@ public class qlMuonTra extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         o_tendocgia = new javax.swing.JTextField();
         o_tennhanvien1 = new javax.swing.JTextField();
@@ -179,12 +235,16 @@ public class qlMuonTra extends javax.swing.JFrame {
         o_mamuontra = new javax.swing.JTextField();
         cb_NhanVien = new javax.swing.JComboBox<>();
         cb_DocGia = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         o_tiencoc = new javax.swing.JTextField();
         o_ngayhentra = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        o_xoa4 = new javax.swing.JButton();
+        o_them2 = new javax.swing.JButton();
+        o_sua2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -207,9 +267,15 @@ public class qlMuonTra extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         txt_TienPhat = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_ghichu = new javax.swing.JTextArea();
+        o_them = new javax.swing.JButton();
+        o_sua = new javax.swing.JButton();
+        o_xoa = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bùi Thị Mến");
         setLocation(new java.awt.Point(100, 70));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 255));
@@ -223,22 +289,6 @@ public class qlMuonTra extends javax.swing.JFrame {
         jLabel2.setText("Quản lý mượn trả");
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
-
-        o_xoa1.setBackground(new java.awt.Color(255, 0, 0));
-        o_xoa1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        o_xoa1.setForeground(new java.awt.Color(255, 255, 255));
-        o_xoa1.setText("Thoát");
-        o_xoa1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                o_xoa1MouseClicked(evt);
-            }
-        });
-        o_xoa1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                o_xoa1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(o_xoa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, 77, 32));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Bảng mượn trả", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
@@ -255,7 +305,7 @@ public class qlMuonTra extends javax.swing.JFrame {
         table1.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(table1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 530, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 530, 230));
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Thông tin phiếu mượn", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
@@ -269,7 +319,7 @@ public class qlMuonTra extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(table2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 560, 230));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 560, 230));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Thông tin mượn trả", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 0, 14))); // NOI18N
@@ -282,10 +332,6 @@ public class qlMuonTra extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Ngày mượn:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel6.setText("Tên nhân viên:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Tên độc giả:");
@@ -332,6 +378,10 @@ public class qlMuonTra extends javax.swing.JFrame {
         });
         jPanel2.add(cb_DocGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 100, 30));
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setText("Tên nhân viên:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
+
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel8.setText("Ngày hẹn trả:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, 30));
@@ -355,7 +405,7 @@ public class qlMuonTra extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("IN phiếu mượn");
+        jButton2.setText("IN phiếu MT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -363,17 +413,51 @@ public class qlMuonTra extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 130, 30));
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("IN phiếu trả");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 130, 30));
-
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel10.setText("Tiền cọc:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 530, 220));
+        o_xoa4.setBackground(new java.awt.Color(153, 255, 255));
+        o_xoa4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        o_xoa4.setText("Xóa");
+        o_xoa4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_xoa4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(o_xoa4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
+
+        o_them2.setBackground(new java.awt.Color(153, 255, 255));
+        o_them2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        o_them2.setText("Thêm");
+        o_them2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_them2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(o_them2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        o_sua2.setBackground(new java.awt.Color(153, 255, 255));
+        o_sua2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        o_sua2.setText("Sửa");
+        o_sua2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_sua2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(o_sua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+
+        jButton5.setBackground(new java.awt.Color(0, 204, 255));
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setText("Thêm file");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 530, 250));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Thông tin sách mượn", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 0, 14))); // NOI18N
@@ -405,7 +489,7 @@ public class qlMuonTra extends javax.swing.JFrame {
 
         txt_NhaXB.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txt_NhaXB.setBorder(null);
-        jPanel3.add(txt_NhaXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 200, 30));
+        jPanel3.add(txt_NhaXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 200, 30));
 
         txt_TacGia.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txt_TacGia.setBorder(null);
@@ -487,16 +571,61 @@ public class qlMuonTra extends javax.swing.JFrame {
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ghi chú", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane3.setViewportView(jTextArea1);
+        txt_ghichu.setColumns(20);
+        txt_ghichu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txt_ghichu.setLineWrap(true);
+        txt_ghichu.setRows(5);
+        txt_ghichu.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(txt_ghichu);
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 230, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 560, 220));
+        o_them.setBackground(new java.awt.Color(153, 255, 255));
+        o_them.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        o_them.setText("Thêm");
+        o_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_themActionPerformed(evt);
+            }
+        });
+        jPanel3.add(o_them, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        o_sua.setBackground(new java.awt.Color(153, 255, 255));
+        o_sua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        o_sua.setText("Sửa");
+        o_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_suaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(o_sua, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+
+        o_xoa.setBackground(new java.awt.Color(153, 255, 255));
+        o_xoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        o_xoa.setText("Xóa");
+        o_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                o_xoaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(o_xoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(0, 204, 255));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setText("Thêm file");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 560, 250));
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel7.setText("SV:Bùi Thị Mến");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(977, 40, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -506,7 +635,7 @@ public class qlMuonTra extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
         );
 
         pack();
@@ -539,7 +668,11 @@ public class qlMuonTra extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_DocGiaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+String s = "%" + o_mamuontra.getText() + "%";
+        HashMap hash = new HashMap();
+        hash.put("ID", s);
+        myViewerReport viewer = new myViewerReport("D:\\Java\\quanLiThuVien\\src\\bieuMau\\phieuMT.jasper", hash);
+        viewer.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void o_tiencocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_tiencocActionPerformed
@@ -555,20 +688,6 @@ public class qlMuonTra extends javax.swing.JFrame {
             txt_TienPhat.setText("0");
         }
     }//GEN-LAST:event_cb_ChuaTraActionPerformed
-
-    private void o_xoa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_o_xoa1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_xoa1MouseClicked
-
-    private void o_xoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_xoa1ActionPerformed
-        int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát không?", "Thoát", JOptionPane.YES_NO_OPTION);
-        if (p == 0) {
-            setVisible(false);
-            quanLi ql = new quanLi();
-            ql.setVisible(true);        // TODO add your handling code here:
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_xoa1ActionPerformed
 
     private void txt_NamXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NamXBActionPerformed
         // TODO add your handling code here:
@@ -630,6 +749,184 @@ public class qlMuonTra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cb_NhanVienActionPerformed
 
+    private void o_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_themActionPerformed
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            PreparedStatement ps = cnn.prepareStatement("insert into Bangchitietmuontra values(?,?,?,?,?) ");
+            ps.setString(1, o_mamuontra.getText());
+            ps.setString(2, txt_Masach.getText());
+            ps.setString(3, txt_NgayTra.getText());
+
+            ps.setString(4, txt_TienPhat.getText());
+            ps.setString(5, txt_ghichu.getText());
+
+            int chk = ps.executeUpdate();
+            if (chk > 0) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                tbn.setRowCount(0);
+                loadData();
+            } else {
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_o_themActionPerformed
+
+    private void o_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_suaActionPerformed
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            PreparedStatement comm = cnn.prepareStatement("Update Bangchitietmuontra set [Mã sách]=?,[Ngày trả]=?,[Tiền phạt]=?,[Ghi chú]=? where [Mã mượn trả]=?");
+            comm.setString(5, o_mamuontra.getText());
+            comm.setString(1, txt_Masach.getText());
+            comm.setString(2, txt_NgayTra.getText());
+
+            comm.setString(3, txt_TienPhat.getText());
+            comm.setString(4, txt_ghichu.getText());
+
+            comm.executeUpdate();
+            if (JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa không?", "Có", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                comm.executeUpdate();
+                tbn.setRowCount(0);
+                loadData();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_o_suaActionPerformed
+
+    private void o_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_xoaActionPerformed
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            PreparedStatement comm = cnn.prepareStatement("DELETE FROM Bangchitietmuontra\n"
+                    + " WHERE [Mã mượn trả ] =?\n"
+                    + "DELETE FROM Bangmuontra WHERE [Mã mượn trả]=?");
+            comm.setString(1, table2.getValueAt(table2.getSelectedRow(), 0).toString());
+            comm.setString(2, table2.getValueAt(table2.getSelectedRow(), 0).toString());
+            if (JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?", "Xóa",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                comm.executeUpdate();
+                tbn.setRowCount(0);
+                loadData();
+            }
+            JOptionPane.showMessageDialog(null, "Đã xóa thành công!");
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            JOptionPane.showMessageDialog(null, "Có lỗi chưa xóa được");
+        }
+    }//GEN-LAST:event_o_xoaActionPerformed
+
+    private void o_xoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_xoa4ActionPerformed
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            PreparedStatement comm = cnn.prepareStatement("DELETE FROM Bangchitietmuontra\n"
+                    + " WHERE [Mã mượn trả ] IN\n"
+                    + "(SELECT [Mã độc giả ] FROM Bangmuontra \n"
+                    + "WHERE [Mã độc giả]= ? )\n"
+                    + "DELETE FROM Bangnhanvien\n"
+                    + "WHERE [Mã NV]= ?\n"
+                    + "DELETE FROM Bangmuontra\n"
+                    + "WHERE [Mã mượn trả]= ?");
+            comm.setString(1, table1.getValueAt(table1.getSelectedRow(), 0).toString());
+            comm.setString(2, table1.getValueAt(table1.getSelectedRow(), 0).toString());
+            comm.setString(3, table1.getValueAt(table1.getSelectedRow(), 0).toString());
+            if (JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?", "Có",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                comm.executeUpdate();
+                tbn.setRowCount(0);
+                loadData();
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_o_xoa4ActionPerformed
+
+    private void o_them2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_them2ActionPerformed
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            PreparedStatement ps = cnn.prepareStatement("insert into Bangmuontra values(?,?,?,?,?,?,?) ");
+            ps.setString(1, o_mamuontra.getText());
+            ps.setString(2, cb_DocGia.getSelectedItem().toString());
+            ps.setString(3, o_ngaymuon.getText());
+            ps.setString(4, o_ngayhentra.getText());
+            ps.setString(5, o_tiencoc.getText());
+            ps.setString(6, cb_NhanVien.getSelectedItem().toString());
+            ps.setString(7, o_tennhanvien1.getText());
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Thêm thành công!");
+            tbn.setRowCount(0);
+            loadData();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }      // TODO add your handling code here:
+    }//GEN-LAST:event_o_them2ActionPerformed
+
+    private void o_sua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_sua2ActionPerformed
+        try {
+            ConnectionDB a = new ConnectionDB();
+            Connection cnn = a.getConnectDB();
+            PreparedStatement comm = cnn.prepareStatement("Update Bangmuontra set [Mã độc giả]=?,[Ngày mượn]=?,[Ngày hẹn trả]=?,[Tiền cọc]=?,[Mã NV]=?,[Tên NV]=? where [Mã mượn trả]=?");
+            comm.setString(7, o_mamuontra.getText());
+            comm.setString(1, cb_DocGia.getSelectedItem().toString());
+            comm.setString(2, o_ngaymuon.getText());
+            comm.setString(3, o_ngayhentra.getText());
+            comm.setString(4, o_tiencoc.getText());
+            comm.setString(5, cb_NhanVien.getSelectedItem().toString());
+            comm.setString(6, o_tennhanvien1.getText());
+
+            comm.executeUpdate();
+            if (JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa không?", "Có", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                comm.executeUpdate();
+                tbn.setRowCount(0);
+                loadData();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_o_sua2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        JFileChooser JF = new JFileChooser();
+        JF.setDialogTitle("Chọn 1 file execl để nhập dữ liệu.");
+        int result = JF.showOpenDialog(null);
+        String excelPath = "";
+        if (result == JFileChooser.APPROVE_OPTION) {
+            excelPath = JF.getSelectedFile().getAbsolutePath();
+
+        }
+        try {
+            readNV(excelPath);
+        } catch (Exception e) {
+            Logger.getLogger(NhanVien.class.getName()).log(Level.SEVERE, null, e);
+        }
+        loadData();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        JFileChooser JF = new JFileChooser();
+        JF.setDialogTitle("Chọn 1 file execl để nhập dữ liệu.");
+        int result = JF.showOpenDialog(null);
+        String excelPath = "";
+        if (result == JFileChooser.APPROVE_OPTION) {
+            excelPath = JF.getSelectedFile().getAbsolutePath();
+
+        }
+        try {
+            readNV(excelPath);
+        } catch (Exception e) {
+            Logger.getLogger(NhanVien.class.getName()).log(Level.SEVERE, null, e);
+        }
+        loadData();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -670,9 +967,10 @@ public class qlMuonTra extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_DocGia;
     private javax.swing.JCheckBox cb_MatSach;
     private javax.swing.JComboBox<String> cb_NhanVien;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -689,6 +987,7 @@ public class qlMuonTra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -696,14 +995,18 @@ public class qlMuonTra extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField o_mamuontra;
     private javax.swing.JTextField o_ngayhentra;
     private javax.swing.JTextField o_ngaymuon;
+    private javax.swing.JButton o_sua;
+    private javax.swing.JButton o_sua2;
     private javax.swing.JTextField o_tendocgia;
     private javax.swing.JTextField o_tennhanvien1;
+    private javax.swing.JButton o_them;
+    private javax.swing.JButton o_them2;
     private javax.swing.JTextField o_tiencoc;
-    private javax.swing.JButton o_xoa1;
+    private javax.swing.JButton o_xoa;
+    private javax.swing.JButton o_xoa4;
     private javax.swing.JTable table1;
     private javax.swing.JTable table2;
     private javax.swing.JTextField txt_Masach;
@@ -714,5 +1017,7 @@ public class qlMuonTra extends javax.swing.JFrame {
     private javax.swing.JTextField txt_TenSach;
     private javax.swing.JTextField txt_TheLoai;
     private javax.swing.JTextField txt_TienPhat;
+    private javax.swing.JTextArea txt_ghichu;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -5,11 +5,13 @@
  */
 package quanlithuvien;
 
+import Home.myViewerReport;
 import java.sql.*;
 import java.awt.List;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,7 +64,7 @@ public class timKiem extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         DG3 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -71,6 +73,7 @@ public class timKiem extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         DG4 = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -79,6 +82,7 @@ public class timKiem extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         DG1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         o_nhap = new javax.swing.JTextField();
@@ -86,8 +90,11 @@ public class timKiem extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         DG = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         txt_SoKQ = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bùi Thị Mến");
@@ -110,12 +117,6 @@ public class timKiem extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setText("Nội dung tìm kiếm sách:");
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 25, -1, -1));
-
-        o_nhap3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                o_nhap3ActionPerformed(evt);
-            }
-        });
         jPanel8.add(o_nhap3, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 22, 331, 33));
 
         o_timKiemSach.setBackground(new java.awt.Color(255, 0, 0));
@@ -149,15 +150,13 @@ public class timKiem extends javax.swing.JFrame {
         jLabel9.setText("THÔNG TIN TÌM KIẾM SÁCH");
         jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setText("Thoát");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("In kết quả");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 80, 30));
+        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 110, 30));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -188,12 +187,6 @@ public class timKiem extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel10.setText("Nội dung tìm kiếm nhân viên:");
         jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 25, -1, -1));
-
-        o_nhap4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                o_nhap4ActionPerformed(evt);
-            }
-        });
         jPanel9.add(o_nhap4, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 22, 331, 33));
 
         o_timKiemNhanvien.setBackground(new java.awt.Color(255, 0, 0));
@@ -205,7 +198,7 @@ public class timKiem extends javax.swing.JFrame {
                 o_timKiemNhanvienActionPerformed(evt);
             }
         });
-        jPanel9.add(o_timKiemNhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(817, 20, -1, 33));
+        jPanel9.add(o_timKiemNhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, 33));
 
         DG4.setBackground(new java.awt.Color(255, 204, 255));
         DG4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -226,6 +219,14 @@ public class timKiem extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel11.setText("THÔNG TIN TÌM KIẾM NHÂN VIÊN");
         jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 70, -1, -1));
+
+        jButton3.setText("In kết quả");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 110, 30));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -273,7 +274,7 @@ public class timKiem extends javax.swing.JFrame {
                 o_timKiemMuontraActionPerformed(evt);
             }
         });
-        jPanel6.add(o_timKiemMuontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 20, -1, 33));
+        jPanel6.add(o_timKiemMuontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, -1, 33));
 
         DG1.setBackground(new java.awt.Color(255, 204, 255));
         DG1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -294,6 +295,14 @@ public class timKiem extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("THÔNG TIN TÌM KIẾM MƯỢN TRẢ");
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 70, -1, -1));
+
+        jButton5.setText("In kết quả");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, 110, 30));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -323,12 +332,6 @@ public class timKiem extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Nội dung tìm kiếm độc giả:");
 
-        o_nhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                o_nhapActionPerformed(evt);
-            }
-        });
-
         o_timKiemDocgia.setBackground(new java.awt.Color(255, 0, 0));
         o_timKiemDocgia.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         o_timKiemDocgia.setForeground(new java.awt.Color(255, 255, 255));
@@ -356,6 +359,13 @@ public class timKiem extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("THÔNG TIN TÌM KIẾM ĐỘC GIẢ");
 
+        jButton4.setText("In kết quả");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -368,12 +378,14 @@ public class timKiem extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(o_nhap, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(o_timKiemDocgia))
+                        .addGap(66, 66, 66)
+                        .addComponent(o_timKiemDocgia)
+                        .addGap(44, 44, 44)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(365, 365, 365)
                         .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +394,8 @@ public class timKiem extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(o_nhap, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(o_timKiemDocgia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(o_timKiemDocgia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(15, 15, 15)
@@ -400,6 +413,21 @@ public class timKiem extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_Search_96px.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 11, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 50, 30));
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("SV: Bùi Thị Mến");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 70, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -421,7 +449,11 @@ public class timKiem extends javax.swing.JFrame {
         int dem = 0;
 
         String ID = "N'%" + o_nhap.getText().trim() + "%'";
-        Sqlx = "select * from Bangdocgia where [Mã độc giả] LIKE " + ID + " or [Họ và tên] like " + ID + " or [Ngày sinh] like " + ID + " or [Giới tính] like " + ID + " or [Số CMND] like " + ID + " or [Số điện thoại] like " + ID + " or [Email] like " + ID + " or [Quê quán] like " + ID;
+        Sqlx = "select * from Bangdocgia where [Mã độc giả] LIKE " + ID
+                + " or [Họ và tên] like " + ID + " or [Ngày sinh] like " + ID
+                + " or [Giới tính] like " + ID + " or [Số CMND] like " + ID
+                + " or [Số điện thoại] like " + ID + " or [Email] like " + ID
+                + " or [Quê quán] like " + ID;
 
         String Columns[] = {"Mã độc giả", "Họ và tên", "Ngày sinh", "Giới tính", "Số CMND", "Số điện thoại", "Email", "Quê quán"};
         DefaultTableModel model = new DefaultTableModel();
@@ -451,24 +483,60 @@ public class timKiem extends javax.swing.JFrame {
 
     }//GEN-LAST:event_o_timKiemDocgiaActionPerformed
 
-    private void o_nhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_nhapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_nhapActionPerformed
-
     private void o_timKiemMuontraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_timKiemMuontraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_timKiemMuontraActionPerformed
+        Connection cnn = cons();
+        int dem = 0;
 
-    private void o_nhap1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_nhap1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_nhap1ActionPerformed
+        String ID = "N'%" + o_nhap1.getText().trim() + "%'";
+        Sqlx = "select * from Bangmuontra where [Mã mượn trả] LIKE " + ID
+                + " or [Mã độc giả] like " + ID + " or [Ngày mượn] like " + ID
+                + " or [Ngày hẹn trả] like " + ID + " or [Tiền cọc] like " + ID
+                + " or [Mã NV] like " + ID + " or [Tên NV] like " + ID;
+
+        String Columns[] = {"Mã mượn trả", "Mã độc giả", "Ngày mượn", "Ngày hẹn trả", "Tiền cọc", "Mã NV", "Tên NV"};
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(Columns);
+        Object[] row;
+        try {
+            Statement st = cnn.createStatement();
+            Rlst = st.executeQuery(Sqlx);
+
+            while (Rlst.next()) {
+                row = new Object[7];
+
+                row[0] = Rlst.getString("Mã mượn trả");
+                row[1] = Rlst.getString("Mã độc giả");
+                row[2] = Rlst.getString("Ngày mượn");
+                row[3] = Rlst.getString("Ngày hẹn trả");
+                row[4] = Rlst.getInt("Tiền cọc");
+                row[5] = Rlst.getString("Mã NV");
+                row[6] = Rlst.getString("Tên NV");
+
+                model.addRow(row);
+                dem++;
+
+            }
+            DG1.setModel(model);
+            txt_SoKQ.setText("Tìm thấy " + dem + " kết quả.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(timKiem.class.getName()).log(Level.SEVERE, null, ex);
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_o_timKiemMuontraActionPerformed
 
     private void o_timKiemNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_timKiemNhanvienActionPerformed
         Connection cnn = cons();
         int dem = 0;
 
         String ID = "N'%" + o_nhap4.getText().trim() + "%'";
-        Sqlx = "select * from Bangnhanvien where [Mã NV] LIKE " + ID + " or [Tên NV] like " + ID + " or [Ngày sinh] like " + ID + " or [Giới tính] like " + ID + " or [Số CMND] like " + ID + " or [Số điện thoại] like " + ID + " or [Email] like " + ID + " or [Quê quán] like " + ID;
+        Sqlx = "select * from Bangnhanvien where [Mã NV] LIKE " + ID
+                + " or [Tên NV] like " + ID
+                + " or [Ngày sinh] like " + ID
+                + " or [Giới tính] like " + ID
+                + " or [Số CMND] like " + ID
+                + " or [Số điện thoại] like " + ID
+                + " or [Email] like " + ID
+                + " or [Quê quán] like " + ID;
 
         String Columns[] = {"Mã độc giả", "Họ và tên", "Ngày sinh", "Giới tính", "Số CMND", "Số điện thoại", "Email", "Quê quán"};
         DefaultTableModel model = new DefaultTableModel();
@@ -501,10 +569,6 @@ public class timKiem extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_o_timKiemNhanvienActionPerformed
-
-    private void o_nhap4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_nhap4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_nhap4ActionPerformed
 
     private void o_timKiemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_timKiemSachActionPerformed
         Connection cnn = cons();
@@ -543,21 +607,54 @@ public class timKiem extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_o_timKiemSachActionPerformed
 
-    private void o_nhap3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_nhap3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_o_nhap3ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát không?", "Thoát", JOptionPane.YES_NO_OPTION);
         if (p == 0) {
             setVisible(false);
             quanLi ql = new quanLi();
-            ql.setVisible(true);         // TODO add your handling code here:
+            ql.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-    }
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String s = "%" + o_nhap3.getText() + "%";
+        HashMap hash = new HashMap();
+        hash.put("ID", s);
+        myViewerReport viewer = new myViewerReport("D:\\Java\\quanLiThuVien\\src\\bieuMau\\TimKiem_Sach.jasper", hash);
+        viewer.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void o_nhap1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_o_nhap1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_o_nhap1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String s = "%" + o_nhap3.getText() + "%";
+        HashMap hash = new HashMap();
+        hash.put("ID", s);
+        myViewerReport viewer = new myViewerReport("D:\\Java\\quanLiThuVien\\src\\bieuMau\\TimKiem_NV.jasper", hash);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String s = "%" + o_nhap3.getText() + "%";
+        HashMap hash = new HashMap();
+        hash.put("ID", s);
+        myViewerReport viewer = new myViewerReport("D:\\Java\\quanLiThuVien\\src\\bieuMau\\TimKiem_DG.jasper", hash);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String s = "%" + o_nhap3.getText() + "%";
+        HashMap hash = new HashMap();
+        hash.put("ID", s);
+        myViewerReport viewer = new myViewerReport("D:\\Java\\quanLiThuVien\\src\\bieuMau\\TimKiem_muonTra.jasper", hash);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
 
         /* Set the Nimbus look and feel */
@@ -597,6 +694,10 @@ public class timKiem extends javax.swing.JFrame {
     private javax.swing.JTable DG3;
     private javax.swing.JTable DG4;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -605,6 +706,7 @@ public class timKiem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

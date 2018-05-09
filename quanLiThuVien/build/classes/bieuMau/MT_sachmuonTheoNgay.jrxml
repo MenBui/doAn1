@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2386355c-fdc3-466e-ad2a-a0b8a68faebc">
+	<property name="ireport.zoom" value="0.8264462809917354"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="3eebe992-4575-42ca-ba2a-b7fbcac41a70">
+		<queryString language="SQL">
+			<![CDATA[select [Bangmuontra].[Ngày mượn] as [Ngày mượn],count([Bangsach].[Mã sách]) as [Số lượng]
+ from Bangmuontra,Bangchitietmuontra,Bangsach 
+where Bangmuontra.[Mã mượn trả ]=Bangchitietmuontra.[Mã mượn trả ] and Bangchitietmuontra.[Mã sách ]=Bangsach.[Mã sách]
+group by Bangmuontra.[Ngày mượn], Bangsach.[Tên sách]]]>
+		</queryString>
+		<field name="Ngày mượn" class="java.lang.String"/>
+		<field name="Số lượng" class="java.lang.Integer"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[select [Bangmuontra].[Ngày mượn] as [Ngày mượn],count([Bangsach].[Mã sách]) as [Số lượng]
+ from Bangmuontra,Bangchitietmuontra,Bangsach 
+where Bangmuontra.[Mã mượn trả ]=Bangchitietmuontra.[Mã mượn trả ] and Bangchitietmuontra.[Mã sách ]=Bangsach.[Mã sách]
+group by Bangmuontra.[Ngày mượn]]]>
+	</queryString>
+	<field name="Ngày mượn" class="java.lang.String"/>
+	<field name="Số lượng" class="java.lang.Integer"/>
+	<title>
+		<band height="214" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="0" width="290" height="20" uuid="72ad200a-5c97-4b23-ac64-85fa0cad51ea"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="49" width="177" height="20" uuid="5ad7123a-d313-4b02-958a-a269b3a3024e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Họ tên sv: Bùi Thị Mến]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="29" width="181" height="20" uuid="ba95040e-29cc-409c-baf4-18cdb62495cd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thư vện Tạ Quang Bửu]]></text>
+			</staticText>
+			<image>
+				<reportElement x="26" y="29" width="78" height="109" uuid="93950bbc-bfe4-415a-bce8-02d4be85212d"/>
+				<imageExpression><![CDATA["C:\\Users\\menbt\\Desktop\\BK.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="671" y="82" width="118" height="20" forecolor="#000000" uuid="e74d9581-ae9d-412f-8abe-de35a9911290"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="626" y="82" width="45" height="20" uuid="e0398655-2917-4ad0-b927-65adee562b2d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Hà Nội,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="597" y="51" width="103" height="30" uuid="2c58b5f0-c4ec-4d69-aeb5-df989429df6e"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[-----------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="505" y="0" width="297" height="21" uuid="1e03f958-4b2c-4539-b96a-b01cf6e7bc30"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="576" y="30" width="178" height="20" uuid="503af820-23eb-4dd1-a855-8d41d764d715"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Độc lập- Tự do- Hạnh phúc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="138" width="605" height="55" uuid="9e2bc13b-2d98-490b-b46c-e3a8db314515"/>
+				<textElement>
+					<font fontName="Times New Roman" size="36" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Thống kê số sách được mượn theo ngày]]></text>
+			</staticText>
+		</band>
+	</title>
+	<lastPageFooter>
+		<band height="71">
+			<staticText>
+				<reportElement x="580" y="35" width="145" height="20" uuid="7ae13d54-bc59-4ee7-a863-c3829ec998f7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="35" width="145" height="20" uuid="d6297e48-fdd2-457e-b1fe-2383d15a6257"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Ký và ghi rõ họ tên)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="15" width="145" height="20" uuid="803e4179-97a2-4e5e-b0c3-3e36ee1d9557"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xác nhận của thủ thư]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="15" width="145" height="20" uuid="ca3ee46b-b88a-40a8-be76-c140bac7cb05"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Người lập]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="83" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="217" y="0" width="360" height="80" uuid="7ba24110-7c27-4a52-ae79-738ac8e59344"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="f62c4dde-44a9-4b35-8eec-b93165ad536e">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="181" uuid="0823ce94-7dbd-4d9e-ac9c-c8286aee0d26">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="181" height="30" uuid="e5407b6f-c2e3-4425-bd59-efb19ee26c2c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Ngày mượn]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="35" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="181" height="35" uuid="910f5e02-7534-4d3b-aa5e-f4ecafaea71d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="12" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Ngày mượn}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="176" uuid="60bde4ed-6b1f-4e8e-8fc3-7713e2704672">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="176" height="30" uuid="0aa71e25-f1a8-421d-89bb-2e06fe03d2c1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Số lượng]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="35" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="176" height="35" uuid="0578564b-0020-4ab8-a37b-c19415340efc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="12" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Số lượng}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

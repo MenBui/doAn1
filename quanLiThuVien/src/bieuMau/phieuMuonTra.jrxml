@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e8e1ce2-0a71-4d65-8cf0-17876469bb40">
+	<queryString language="SQL">
+		<![CDATA[select * from Bangdocgia, Bangnhanvien,Bangsach,Bangmuontra,Bangchitietmuontra]]>
+	</queryString>
+	<field name="Mã độc giả" class="java.lang.String"/>
+	<field name="Họ và tên" class="java.lang.String"/>
+	<field name="Ngày sinh" class="java.lang.String"/>
+	<field name="Giới tính" class="java.lang.Integer"/>
+	<field name="Số CMND" class="java.lang.String"/>
+	<field name="Số điện thoại" class="java.lang.String"/>
+	<field name="Email" class="java.lang.String"/>
+	<field name="Quê quán" class="java.lang.String"/>
+	<field name="Mã NV" class="java.lang.String"/>
+	<field name="Tên NV" class="java.lang.String"/>
+	<field name="Mã sách" class="java.lang.String"/>
+	<field name="Tên sách" class="java.lang.String"/>
+	<field name="Tác giả" class="java.lang.String"/>
+	<field name="Thể loại" class="java.lang.String"/>
+	<field name="Nhà xuất bản" class="java.lang.String"/>
+	<field name="Năm xuất bản" class="java.lang.Integer"/>
+	<field name="Đơn giá" class="java.lang.Integer"/>
+	<field name="Số lượng" class="java.lang.Integer"/>
+	<field name="Mã mượn trả" class="java.lang.String"/>
+	<field name="Ngày mượn" class="java.lang.String"/>
+	<field name="Ngày hẹn trả" class="java.lang.String"/>
+	<field name="Tiền cọc" class="java.lang.Integer"/>
+	<field name="Mã mượn trả " class="java.lang.String"/>
+	<field name="Mã sách " class="java.lang.String"/>
+	<field name="Ngày trả" class="java.lang.String"/>
+	<field name="Tiền phạt" class="java.lang.Integer"/>
+	<field name="Ghi chú" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -251,21 +251,41 @@ public class TK extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(0, 102, 255));
         jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton9.setText("Sách đã đươc mượn");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, 160, 50));
 
         jButton10.setBackground(new java.awt.Color(0, 102, 255));
         jButton10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton10.setText("Sách đã được trả");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 160, 50));
 
         jButton11.setBackground(new java.awt.Color(0, 102, 255));
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton11.setText("Tiền cọc");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, 160, 50));
 
         jButton12.setBackground(new java.awt.Color(0, 102, 255));
         jButton12.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton12.setText("Tiền phạt");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 160, 50));
 
         jButton13.setBackground(new java.awt.Color(0, 102, 255));
@@ -281,11 +301,21 @@ public class TK extends javax.swing.JFrame {
         jButton14.setBackground(new java.awt.Color(0, 102, 255));
         jButton14.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton14.setText("Theo nhân viên");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 560, 160, 50));
 
         jButton15.setBackground(new java.awt.Color(0, 102, 255));
         jButton15.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton15.setText("Số độc giả đến mượn");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 160, 50));
 
         jButton16.setBackground(new java.awt.Color(0, 102, 255));
@@ -301,6 +331,11 @@ public class TK extends javax.swing.JFrame {
         jButton17.setBackground(new java.awt.Color(0, 102, 255));
         jButton17.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton17.setText("Theo độc giả");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -356,28 +391,70 @@ public class TK extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_TacGia.jasper";
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_TacGia.jasper";
         myViewerReport viewer = new myViewerReport(NV, null);
         viewer.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_TheLoai.jasper";
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_TheLoai.jasper";
         myViewerReport viewer = new myViewerReport(NV, null);
         viewer.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_NhaXB.jasper";
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_NhaXB.jasper";
         myViewerReport viewer = new myViewerReport(NV, null);
         viewer.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-     String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_NamXB.jasper";
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\tkS_NamXB.jasper";
         myViewerReport viewer = new myViewerReport(NV, null);
         viewer.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_sachmuonTheoNgay.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_sachtraTheoNgay.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_tiencocTheoNgay.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_tienphatTheoNgay.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_theoDG.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_soDGdenmuon.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        String NV = "D:\\Java\\quanLiThuVien\\src\\bieuMau\\MT_theoNV.jasper";
+        myViewerReport viewer = new myViewerReport(NV, null);
+        viewer.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments
